@@ -94,4 +94,4 @@ next-env.d.ts             # Next.js environment type definitions
   - **Password:** chand
 
 **View Project:**
-View the live URL of the project.
+View the live URL of the project. https://login-app-kohl.vercel.app/
