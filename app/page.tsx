@@ -41,7 +41,7 @@ const HomePage = () => {
     let userFound: boolean = false;
     userDB.forEach((obj) => {
       console.log(obj);
-
+      //@ts-ignore
       if (obj.username === username && obj.password === password) {
         userFound = true;
       }
