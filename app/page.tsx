@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { setToken, setUser } from "@/redux/auth/auth.slice";
+import { setToken } from "@/redux/auth/auth.slice";
 import useAuthSession from "../hooks/useAuthSession";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { toast } from "sonner";
 import axios from "axios";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 
 type User = {
   userId: string;
@@ -33,23 +32,21 @@ const HomePage = () => {
   }, [authToken]);
 
   const handleLogin = async () => {
-    // Implement the logic to authenticate the user
     if (username === "" || password === "") {
       toast.error("Please enter all the details");
       return;
     }
-    let userFound: boolean = false;
-    userDB.forEach((obj) => {
-      console.log(obj);
+
+    const userFound = userDB.some(
       //@ts-ignore
-      if (obj.username === username && obj.password === password) {
-        userFound = true;
-      }
-    });
+      (obj) => obj.username === username && obj.password === password
+    );
+
     if (!userFound) {
       toast.error("Invalid Username or Password!");
       return;
     }
+
     const userDetails: User = {
       username,
       password,
@@ -111,19 +108,6 @@ const HomePage = () => {
             </p>
           </div>
         )}
-        {/* <div className="mt-6 p-4 border rounded-md text-black bg-gray-50">
-          <h3 className="text-lg font-semibold">
-            The hook should be usable like this:{" "}
-          </h3>
-          <pre className="mt-2 p-2 text-gray-500 bg-gray-100 rounded-md">
-            <code>
-              {`const { user } = useAuthSession();
-if (user) {
-  console.log('User:', user.username);
-}`}
-            </code>
-          </pre>
-        </div> */}
         <div>
           {user && (
             <button

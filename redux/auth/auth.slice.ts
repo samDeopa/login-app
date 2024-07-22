@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { userAgent } from "next/server";
 
 interface AuthState {
-  user: { username: string } | null;
+  user: { username: string | null } | null;
   token: string | null;
   userDB: Array<object>;
 }

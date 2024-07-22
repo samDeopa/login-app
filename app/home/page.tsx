@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { toast } from "sonner";
 
-export default function DashboardPage() {
+export default function HomePage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAuthSession();
@@ -22,7 +22,7 @@ export default function DashboardPage() {
     if (!user) {
       router.push("/");
     }
-  }, [user]);
+  }, []);
 
   const logoutUser = () => {
     localStorage.removeItem("token");
